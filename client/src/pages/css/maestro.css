@@ -178,6 +178,44 @@ nav button:hover {
     background: radial-gradient(circle, var(--color-accent), transparent 70%);
     animation: float 25s infinite alternate-reverse;
 }
+
+.modal {
+    position: fixed;
+    
+    display: flex !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    backdrop-filter: blur(10px); /* Desenfoque del fondo */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+    text-align: center;
+}
+
+
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content input {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
 @keyframes float {
     0% { transform: translate(0, 0) rotate(0deg); }
     100% { transform: translate(50px, 50px) rotate(360deg); }
