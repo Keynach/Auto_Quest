@@ -31,31 +31,58 @@ El repositorio está organizado de la siguiente manera:
 
 Para configurar el proyecto en tu entorno local, sigue estos pasos:
 
-1. **Clona el repositorio:**
+1. **Clona el repositorio:** 
+
    ```bash
    git clone https://github.com/keynach/Auto_Quest.git
    ```
 
 2. **Navega al directorio del proyecto:**
+
    ```bash
    cd Auto_Quest
    ```
 
 3. **Activa el entorno virtual:**
+
+   
    - En sistemas Unix o MacOS:
+     
+
+   - En sistemas Unix o MacOS:
+
      ```bash
      source venv/bin/activate
      ```
    - En sistemas Windows:
+
      ```bash
      venv\Scripts\activate
      ```
 
 4. **Instala las dependencias requeridas:**
+
    ```bash
    pip install -r requirements.txt
    ```
 
+
+5. **Inicia el servidor de desarrollo:**
+   
+   ```bash
+   python manage.py runserver 192.168.1.161:8000
+   
+   ```
+   
+   El proyecto estará disponible en `http://127.0.0.1:8000/`.
+
+6. **Inicia el servidor de FrontEnd**
+   
+   ```bash
+   npm run dev -- --host
+   ```
+
+=======
 5. **Realiza las migraciones de la base de datos:**
    ```bash
    python manage.py migrate
@@ -68,9 +95,16 @@ Para configurar el proyecto en tu entorno local, sigue estos pasos:
 
    El proyecto estará disponible en `http://127.0.0.1:8000/`.
 
+
 ## Uso
 
 1. **Accede a la plataforma** a través del navegador en la dirección proporcionada anteriormente.
 2. **Crea un nuevo formulario** utilizando las opciones disponibles en la interfaz.
 3. **Comparte el formulario** con los destinatarios deseados.
 4. **Recibe y analiza las respuestas** con la retroalimentación proporcionada por la IA integrada.
+
+
+## Dudas:
+
+Comuniquese con mi amigo [chat]([ChatGPT - Error ModuleNotFound corsheaders](https://chatgpt.com/share/67ea0273-35b0-8005-b13f-31b4e7915c7a))
+=======
