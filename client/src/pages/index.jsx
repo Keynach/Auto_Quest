@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './css/index.css';
 // asumiendo que este archivo contiene estilos CSS
 
+
 const FeatureCard = ({ icon, title, description, onClick }) => (
     <div className="feature-card" onClick={onClick}>
         <div className="feature-icon">{icon}</div>

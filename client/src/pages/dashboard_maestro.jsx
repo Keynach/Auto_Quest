@@ -1,47 +1,53 @@
-import "./css/maestro.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./css/maestro.css";
 
-export default function Dashboard() {
-    const [courses, setCourses] = useState([]);
+export default function DashboardMaestro() {
+    const navigate = useNavigate();
+    const [courses, setCourses] = useState(() => {
+        const savedCourses = localStorage.getItem("teacherCourses");
+        return savedCourses ? JSON.parse(savedCourses) : [];
+    });
+    const [exams, setExams] = useState(() => {
+        return JSON.parse(localStorage.getItem("exams")) || [];
+    });
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [newCourse, setNewCourse] = useState({ name: "", semester: "", group: "" });
 
     useEffect(() => {
-        console.log("showForm ha cambiado:", showForm);
-    }, [showForm]);
+        localStorage.setItem("teacherCourses", JSON.stringify(courses));
+        localStorage.setItem("exams", JSON.stringify(exams));
+    }, [courses, exams]);
 
-    const showCourseDetails = (course) => {
-        setSelectedCourse(course);
+    const generateClassCode = () => {
+        return Math.floor(100000 + Math.random() * 900000).toString();
     };
 
-    const handleInputChange = (e) => {
-        setNewCourse({ ...newCourse, [e.target.name]: e.target.value });
-    };
-
-    const saveNewCourse = async () => {
+    const saveNewCourse = () => {
         if (!newCourse.name || !newCourse.semester || !newCourse.group) {
             alert("Por favor, completa todos los campos.");
             return;
         }
 
-        try {
-            const response = await fetch("http://localhost:5000/api/courses", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newCourse),
-            });
+        const classCode = generateClassCode();
+        const newCourseData = { ...newCourse, code: classCode };
+        setCourses([...courses, newCourseData]);
+        setShowForm(false);
+        setNewCourse({ name: "", semester: "", group: "" });
+    };
 
-            if (response.ok) {
-                const savedCourse = await response.json();
-                setCourses([...courses, savedCourse]);
-                setShowForm(false);
-            } else {
-                alert("Error al guardar el curso.");
-            }
-        } catch (error) {
-            console.error("Error al conectar con el servidor:", error);
-        }
+    const saveExam = (examData) => {
+        if (!selectedCourse) return;
+        
+        const newExam = {
+            ...examData,
+            courseCode: selectedCourse.code,
+            id: Date.now().toString(),
+            createdAt: new Date().toISOString()
+        };
+        setExams([...exams, newExam]);
+        navigate("/dashboard_maestro");
     };
 
     return (
@@ -63,15 +69,13 @@ export default function Dashboard() {
                         <h2>Mis Cursos</h2>
                         <div className="courses-grid">
                             {courses.map(course => (
-                                <div key={course.id} className="course-card" onClick={() => showCourseDetails(course)}>
+                                <div key={course.code} className="course-card" onClick={() => setSelectedCourse(course)}>
                                     <h3>{course.name}</h3>
                                     <p>Semestre: {course.semester} - Grupo: {course.group}</p>
+                                    <p>Código: {course.code}</p>
                                 </div>
                             ))}
-                            <div className="course-card add-course-card" onClick={() => {
-                                console.log("Se hizo clic en añadir curso");
-                                setShowForm(true);
-                            }}>
+                            <div className="course-card add-course-card" onClick={() => setShowForm(true)}>
                                 <span style={{ fontSize: "2rem" }}>+</span>
                                 <p>Añadir Curso</p>
                             </div>
@@ -81,6 +85,13 @@ export default function Dashboard() {
                     <div className="course-details">
                         <h2>{selectedCourse.name}</h2>
                         <p>Semestre: {selectedCourse.semester} - Grupo: {selectedCourse.group}</p>
+                        <p>Código: {selectedCourse.code}</p>
+                        <button 
+                            className="add-exam-button" 
+                            onClick={() => navigate("/dashboard_maestro/option", { state: { courseCode: selectedCourse.code } })}
+                        >
+                            Añadir Examen
+                        </button>
                     </div>
                 )}
             </main>
@@ -89,11 +100,31 @@ export default function Dashboard() {
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Crear Nuevo Curso</h3>
-                        <input type="text" name="name" placeholder="Nombre del curso" onChange={handleInputChange} />
-                        <input type="text" name="semester" placeholder="Semestre" onChange={handleInputChange} />
-                        <input type="text" name="group" placeholder="Grupo" onChange={handleInputChange} />
-                        <button onClick={saveNewCourse}>Guardar</button>
-                        <button onClick={() => setShowForm(false)}>Cancelar</button>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Nombre del curso" 
+                            value={newCourse.name}
+                            onChange={(e) => setNewCourse({ ...newCourse, name: e.target.value })} 
+                        />
+                        <input 
+                            type="text" 
+                            name="semester" 
+                            placeholder="Semestre" 
+                            value={newCourse.semester}
+                            onChange={(e) => setNewCourse({ ...newCourse, semester: e.target.value })} 
+                        />
+                        <input 
+                            type="text" 
+                            name="group" 
+                            placeholder="Grupo" 
+                            value={newCourse.group}
+                            onChange={(e) => setNewCourse({ ...newCourse, group: e.target.value })} 
+                        />
+                        <div className="modal-buttons">
+                            <button onClick={saveNewCourse}>Guardar</button>
+                            <button onClick={() => setShowForm(false)}>Cancelar</button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -20,7 +20,7 @@ export const LoginPage = () => {
         try {
             const user = await login(email, password, userType); // Llamamos a la API para login
             console.log("Respuesta del servidor:", user); // Ver qué está devolviendo el backend
-            if (user && user.token) { // Asegúrate de que el backend dev
+            if (user && user.token) {
                 localStorage.setItem("token", user.access); // Guardar el token en localStorage
                 localStorage.setItem("user", JSON.stringify(user)); // Guardar el usuario
                 navigate(userType === "maestro" ? "/dashboard_maestro" : "/dashboard_alumno"); // Redirigir segun el tipo de usuario
@@ -28,6 +28,7 @@ export const LoginPage = () => {
                 setError("Credenciales incorrectas"); // Manejo de error
             }
         } catch (err) {
+            // Manejo de errores de la API
             console.error("Error en login:", err);
             setError("Error en el servidor. Intenta nuevamente.");
         }

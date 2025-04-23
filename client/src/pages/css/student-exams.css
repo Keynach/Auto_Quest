@@ -1,0 +1,145 @@
+.student-exams-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--color-text);
+}
+
+.course-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    border: 1px solid #444;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.no-exams {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.exam-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exam-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exam-header h2 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.exam-date {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.exam-section {
+    margin-top: 1.5rem;
+}
+
+.exam-section h3 {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exam-question {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.question-text {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.option input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border-radius: 50%;
+}
+
+.submit-exam-btn {
+    background: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.submit-exam-btn:hover {
+    background: var(--color-secondary);
+}
+
+.exam-submitted {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 5px;
+    color: var(--color-primary);
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,192 @@
+/* upload_md.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --color-primary: #4CAF50;
+    --color-primary-dark: #45a049;
+    --color-primary-darker: #2E7D32;
+    --color-accent: #00BCD4;
+    --color-white: #ffffff;
+    --color-black: #121212;
+    --color-gray: #333333;
+    --color-error: #f44336;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #1a1a1a, #000000);
+    color: var(--color-white);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.upload-markdown-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* Centrado horizontal */
+}
+
+.upload-markdown-container h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+    text-align: center; /* Centrado el título */
+}
+
+.upload-markdown-container p {
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+    text-align: center; /* Centrado el código del curso */
+    font-size: 1rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrado elementos del formulario */
+}
+
+.file-input-container {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 400px; /* Ancho controlado para el área de archivo */
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    display: block;
+    padding: 0.8rem;
+    border-radius: 5px;
+    background-color: var(--color-gray);
+    color: var(--color-white);
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center; /* Centrado texto del label */
+    margin-bottom: 0.5rem;
+    border: 1px solid #555;
+    font-weight: bold;
+    width: 100%;
+}
+
+.file-label:hover {
+    background-color: #444;
+}
+
+.error-message {
+    color: var(--color-error);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 400px; /* Mismo ancho que el file input */
+    justify-content: center; /* Centrado botones */
+}
+
+.cancel-btn, .submit-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    font-weight: bold;
+    min-width: 120px; /* Ancho mínimo para los botones */
+}
+
+.cancel-btn {
+    background-color: #555;
+    color: var(--color-white);
+}
+
+.cancel-btn:hover {
+    background-color: #666;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: var(--color-white);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+}
+
+.submit-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.markdown-guide {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    text-align: left;
+    width: 100%;
+}
+
+.markdown-guide h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-accent);
+    font-weight: bold;
+    text-align: center; /* Centrado título formato requerido */
+}
+
+.markdown-guide ul {
+    list-style-type: none;
+    padding-left: 1.5rem;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.markdown-guide li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+}
+
+.markdown-guide li:before {
+    content: "-";
+    position: absolute;
+    left: -1rem;
+}
+
+.markdown-guide li strong {
+    font-weight: 700;
+}
+
+/* Separador visual */
+.separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1.5rem auto;
+    width: 80%;
+}
